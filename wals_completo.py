@@ -2,11 +2,11 @@
 import pandas as pd
 
 #Cargamos los archivos
-codes = pd.read_csv('/home/ingrid/Documents/labodatos/TP_final/dataset/cldf-datasets-wals-bc8a5f9/cldf/codes.csv')
-languages = pd.read_csv('/home/ingrid/Documents/labodatos/TP_final/dataset/cldf-datasets-wals-bc8a5f9/cldf/languages.csv')
-parameters = pd.read_csv('dataset/cldf-datasets-wals-bc8a5f9/cldf/parameters.csv')
-values = pd.read_csv('dataset/cldf-datasets-wals-bc8a5f9/cldf/values.csv')
-countries = pd.read_csv('dataset/cldf-datasets-wals-bc8a5f9/cldf/countries.csv')
+codes = pd.read_csv('/cldf-datasets-wals-bc8a5f9/cldf/codes.csv')
+languages = pd.read_csv('/cldf-datasets-wals-bc8a5f9/cldf/languages.csv')
+parameters = pd.read_csv('/cldf-datasets-wals-bc8a5f9/cldf/parameters.csv')
+values = pd.read_csv('/cldf-datasets-wals-bc8a5f9/cldf/values.csv')
+countries = pd.read_csv('/cldf-datasets-wals-bc8a5f9/cldf/countries.csv')
 #%%
 #Sacamos columnas que no nos iban a servir
 languages.drop(columns=['Glottocode','Samples_100','Samples_200','Source'], inplace=True)
