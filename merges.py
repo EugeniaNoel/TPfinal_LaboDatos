@@ -64,7 +64,7 @@ def group_idem_oset(df,column_name):
         if len(values) == 1: 
             new_column.append(values[0]) #si hay un unico valor lo reemplaza directamente
         elif not values: 
-            new_column.append(0) #si es una lista vacía pone un 0
+            new_column.append(np.nan) #si es una lista vacía pone un 0
         else:
             new_column.append(values) #si hay varios valores distintos los conservamos
     return new_column
@@ -80,7 +80,6 @@ df_collapsed = pd.concat(collapsed, axis=1)
 #%%
 #para ver entradas donde todavía hay listas de valores, por columna
 list_index = df_collapsed['wiki_name'].apply(lambda x: isinstance(x,list))
-listas = df_collapsed[list_index]
 #%%
 #intento de merge con wals
 merged = wals.merge(df_collapsed, left_on='ISO',right_index=True,how='inner').rename(
@@ -96,6 +95,6 @@ merged2 = wals_2.merge(df_collapsed, left_on='ISO',right_index=True,how='inner')
 ).drop(columns=['wiki_lang_coord','wiki_name']).set_index('ISO')
 
 merged2.to_csv('merged2.csv')
-#%%
-da = pd.read_csv('merged1.csv')
-do = pd.read_csv('merged2.csv')
+# %%
+#para ver las listas que quedaron:
+merged[merged['Status'].apply(lambda x: isinstance(x,list))]
