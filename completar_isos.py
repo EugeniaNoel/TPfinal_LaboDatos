@@ -55,8 +55,8 @@ for k,v in isos.items():
     elif v.shape[0] == 0:
         nf.append(k)
 #%%
-
 #aca estoy mirando a mano todos los que no tenian un valor unico .-.
+#region #A OJO
 id_to_iso['aab'] = 'aah'
 id_to_iso['cco'] = 'coq'
 id_to_iso['cuc'] = 'NF'
@@ -82,7 +82,7 @@ id_to_iso['yyg'] = 'xya'
 id_to_iso['ksn'] = 'syo'
 id_to_iso['mcc'] = 'omc'
 id_to_iso['mbb'] = 'vmb'
-id_to_iso['bfg'] = 'sjs'
+id_to_iso['bfg'] = 'grr'
 id_to_iso['nhp'] = 'nhn'
 id_to_iso['nmp'] = 'nhn'
 id_to_iso['mdm'] = 'dmd'
@@ -105,6 +105,7 @@ ext = {'yrm': 'X',
 sgn['lgh'] = 1 
 sgn['isl'] = 1
 sgn['hsl'] = 1
+#endregion
 # %%
 wals['Status'] = np.nan
 wals['Lenguaje de Señas'] = 0
@@ -124,9 +125,12 @@ for id in wals.index.values:
 
 for id, extn in ext.items():
     wals.loc[id,'Status'] = extn
+
 # %%
 wals_con_isos = wals[['ISO_codes','Name','Macroarea','Country_ID','Latitude','Longitude',
                     'Family','Genus','Lenguaje de Señas','Status']].rename(columns={'ISO_codes':'ISO'}).reset_index()
-
 # %%
-wals_con_isos.to_csv('isos_completos.csv')
+wals_con_isos.to_csv('ISO_completos.csv',index=False)
+# %%
+wals_guardar = wals.drop(columns=['GenusIcon','ISO639P3code']).rename(columns={'ISO_codes':'ISO'}).reset_index()
+wals_guardar.to_csv('ISO_completos_features.csv',index=False)
