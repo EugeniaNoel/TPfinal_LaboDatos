@@ -1,7 +1,7 @@
 #%%
 import pandas as pd
 import webbrowser
-path = 'archivo.pkl'
+path = 'arreglar_df_v2.pkl'
 df = pd.read_pickle(path).reset_index()
 #%%
 df['num_speakers'].astype('float')
@@ -20,12 +20,7 @@ for iso in idiomas:
         print(df.loc[iso,'num_speakers'])
         i += 1 
         if i%20 == 0:
-            df.to_pickle('df_num_speakers_test_4.pkl')
+            df.to_pickle('df_num_speakers.pkl')
     except KeyboardInterrupt:
-        df.to_pickle('df_num_speakers_test_4.pkl')
+        df.to_pickle('df_num_speakers.pkl')
         break
-
-#%%
-df.to_csv('aver.csv')
-df.to_pickle('aver.pkl')
-feo = 123456789
