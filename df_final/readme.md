@@ -13,3 +13,12 @@ Cuando haga la parte geográfica lo voy a hacer en otra carpeta, asi no mezclamo
 ## Oficial_en:
 Tiene el o los paises donde el idioma es un idioma oficial. Si no es en ninguno tiene un NaN, si es más de uno es una lista.
 Los países figuran con su código ISO de 3 letras
+
+## Native_country:
+El país de origen del idioma (según WALS)
+
+## Family/Genus:
+Para agrupar idiomas según características comunes. Es lo de la foto del grupo de whatsapp.
+
+## Nearest_languages:
+La feature que armó Euge de cuantos idiomas tiene cerca
