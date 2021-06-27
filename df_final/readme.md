@@ -22,3 +22,6 @@ Para agrupar idiomas según características comunes. Es lo de la foto del grupo
 
 ## Nearest_languages:
 La feature que armó Euge de cuantos idiomas tiene cerca
+
+# Query:
+  Subí un código para hacer los query desde el editor (al menos en VS me funciona) y directamente pasarlo a un DF
