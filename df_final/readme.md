@@ -10,6 +10,6 @@ Está el pkl para poder usar las listas y sino el csv.
 
 Cuando haga la parte geográfica lo voy a hacer en otra carpeta, asi no mezclamos todo y aca queda solo el DF.
 
-#Oficial_en:
+# Oficial_en:
 Tiene el o los paises donde el idioma es un idioma oficial. Si no es en ninguno tiene un NaN, si es más de uno es una lista.
 Los países figuran con su código ISO de 3 letras
