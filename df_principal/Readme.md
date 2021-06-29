@@ -15,3 +15,5 @@ Entonces al mergearlo, los índices numéricos no servían pero el ISO tampoco..
 Ahí se mezcló todo. Ahora lo arreglé y por lo que pude ver eso funciona bien.
 
 En num speakers quedaron 90 nans que no estaban en ninguno de los que completamos. Si completan eso pasenmelo que lo actualizo acá.
+
+Si ven algo raro, traten de modificar el código del .py asi corriendo eso todas tenemos el mismo DF.
