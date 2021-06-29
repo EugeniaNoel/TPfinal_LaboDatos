@@ -7,7 +7,6 @@ También me fuí bastante atrás para recuperar esas columnas desde cero, en vez
 
 El problema del merge fue que en una de las versiones no habíamos sacado idiomas de señas, entonces tenía mas filas que la otra. Además, en una versión
 sacamos las columnas del nombre, ID, etc que servían para identificarlo.
-
 Entonces al mergearlo, los índices numéricos no servían pero el ISO tampoco... porque no son valores únicos los ISO.
 Ahí se mezcló todo. Ahora lo arreglé y por lo que pude ver eso funciona bien.
 
