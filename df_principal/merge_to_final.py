@@ -22,6 +22,17 @@ def sep(x):
     else:
         return x
 
+def sep_float(x):
+    """para pasar posibles string-listas-float a listas-float"""
+    if (isinstance(x, str)) and ("[" in x): 
+        lista = x.replace("'", "").strip("][").split(", ")
+        return [float(x_n) for x_n in lista]
+    elif isinstance(x,list):
+        return [float(x_n) for x_n in x]
+    else:
+        print(x)
+        return float(x)
+
 #para cargar los points en geopandas como coordenadas
 def topoint(x):
     if isinstance(x, list):
@@ -29,6 +40,7 @@ def topoint(x):
     else:
         return shp.wkt.loads(x)
 
+#%%
 df1 = df_merge1.applymap(sep)
 
 print('Ahora las columnas problematicas solo tienen listas-listas \n\n#Listas por columna:')
@@ -190,15 +202,16 @@ df4['Country_long'] = col_longitude
 #%%
 #region PART 2: AGREGAR SPEAKERS DE CADA UNA AL DF PRINCIPAL
 #df4 = pd.read_pickle('paso1.pkl')
-df_principal = df4.copy()
-ingrid = pd.read_csv('completados_INGRID.csv')
-euge = pd.read_excel('df_num_speakers_euge_arreglado_v2.xlsx')
-mai = pd.read_csv('completados_MAIA.csv')
-romi = pd.read_csv('romi_completos.csv')
+#df_principal = df4.copy()
+ingrid = pd.read_csv('/home/ingrid/Documents/labodatos/TP_final/df_principal/completados_INGRID.csv')
+euge = pd.read_excel('/home/ingrid/Documents/labodatos/TP_final/df_principal/df_num_speakers_euge_arreglado_v2.xlsx')
+mai = pd.read_csv('/home/ingrid/Documents/labodatos/TP_final/df_principal/completados_MAIA.csv')
+romi = pd.read_csv('/home/ingrid/Documents/labodatos/TP_final/df_principal/romi_completos.csv')
 #%%
 #Los df merge1 no habian pasado por todos los pasos anteriores
 #En uno de esos quitabamos varias filas, eso hizo lio con los indexados
 #Con esto se acomodó:
+df_principal = pd.read_pickle('paso1.pkl')
 
 def senas(df):
     df2 = df.rename(columns={"Lenguaje de Señas": "senas"})
@@ -211,6 +224,7 @@ euge = senas(euge)
 romi = senas(romi)
 df_principal = senas(df_principal)
 
+#%%
 #Ahora los 4 DF tienen el mismo indice, se puede probar para cada par con:
 (romi['num_speakers'] == ingrid['num_speakers']).value_counts()
 
@@ -237,6 +251,24 @@ numspeakers_full[numspeakers_full['num_speakers'].isna()]
 
 #agregandolo al df principal
 df_principal['num_speakers'] = numspeakers_full['num_speakers']
+#%%
+
+#Al mergearlo de nuevo, volvieron algunos valores de un DF viejo que estaban en string
+#lo volvemos a limpiar
+
+df_principal['num_speakers'] = df_principal['num_speakers'].apply(sep_float)
+
+list_bool = df_principal["num_speakers"].apply(
+    lambda x: isinstance(x, list)
+)  
+
+# lista de las listas
+num_speaker_lists = df_principal["num_speakers"][list_bool]  
+
+# con la función lambda tomo el máximo, reemplazo esos valores en el df
+df_principal.loc[num_speaker_lists.index, "num_speakers"] = num_speaker_lists.apply(
+    lambda x: max(x)
+)
 #endregion
 #%%
 #df_principal.to_pickle('paso2.pkl')
