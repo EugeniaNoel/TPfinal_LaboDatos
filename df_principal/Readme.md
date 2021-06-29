@@ -1,3 +1,7 @@
+## DF principal
+
+Acá están todos los archivos y pasos necesarios para armar el DF desde el primer merge hasta lo último que tenemos. La idea es que todas usemos el mismo (df_principal) y elijamos las columnas que queremos para cada cosa.
+
 ## merge_to_final.py:
 Tiene todos los pasos desde el primer merge que hice con los datos de wals, las modificaciones que hicieron después, feature de euge, status binario, etc.
 Pero junte todo, lo fui corriendo desde el primer merge y limpiandolo. Había muchos puntos donde empezabamos a usar DF distintos, ahí cuando lo juntabamos se rompía todo.
